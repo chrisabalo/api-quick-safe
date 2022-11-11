@@ -14,7 +14,7 @@ const http = require('http').createServer(app);
 
 const io = require('socket.io')(http,{
 	cors: { 
-	    origin: ['http://localhost:4000', 'http://localhost:5000'], 
+	    origin: [process.env.URL_SOCKET], 
 	    methodes: [ "GET" , "POST" ] 
 	} 
 });
@@ -49,7 +49,6 @@ http.listen(port, () => {
 
 io.on('connection', function(socket) {
     	console.log("new user id connected " + socket.id);
-
     	socket.on('sendData', function (data) {
     		// body...
     		console.log(data)
